@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Categories {
+  id   Int    @id @default(autoincrement())
+  Name String @unique
+  ImageUrl  String
+  product Products[]
+}
+
+model Brands {
+  id   Int    @id @default(autoincrement())
+  Name String @unique
+  logoUrl  String
+  product Products[]
+}
+
+model Products {
+  id   Int    @id @default(autoincrement())
+  Name String @unique
+  ImageUrl  String
+  description String?
+  ProductDetails Json?
+  brandId Int
+  categoryId Int
+  Rating Int
+  brand Brands @relation(fields: [brandId],references: [id])
+  category Categories @relation(fields: [categoryId],references: [id])
+  variants ProductVariant[]
+}
+
+model ProductVariant{
+  id Int @id @default(autoincrement())
+  ProductId Int
+  product Products @relation(fields: [ProductId],references: [id])
+  sku String @unique
+  price Int
+  stock Int
+  attributes Json?
+  images ProductImage[]
+}
+model ProductImage{
+  id Int @id @default(autoincrement())
+  variantId Int
+  variant ProductVariant @relation(fields: [variantId],references: [id])
+  imageUrl String
+  Position Int
+  altText String?
+}
