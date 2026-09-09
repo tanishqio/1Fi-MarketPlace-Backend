@@ -2,7 +2,12 @@ import express from "express";
 import cors from "cors";
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: [
+        "http://localhost:3005",
+        "https://frontend.vercel.app"
+    ]
+}));
 import { prisma } from "./prisma/db";
 
 app.get("/api/topbrands/:categoryname", async (req, res) => {
@@ -62,7 +67,7 @@ app.get("/api/featuredproducts", async (req, res) => {
 
 app.get("/api/getproductsbybrand/:brandname", async (req, res) => {
     const brandname = req.params.brandname;
-    const brand =await prisma.brands.findUnique({
+    const brand = await prisma.brands.findUnique({
         where: {
             Name: brandname
         }, select: { id: true }
