@@ -5,7 +5,7 @@ app.use(express.json());
 app.use(cors({
     origin: [
         "http://localhost:3000",
-        "https://1-fi-marketplace-psi.vercel.app/shop"
+        "https://1-fi-marketplace-psi.vercel.app"
     ]
 }));
 import { prisma } from "./prisma/db";
