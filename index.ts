@@ -178,8 +178,9 @@ app.post("/addproductcvariant/:productid", async (req, res) => {
 
 
 
-app.listen(process.env.PORT, () => {
-    console.log("starter on port"
-    )
-})
+// app.listen(process.env.PORT, () => {
+//     console.log("starter on port"
+//     )
+// })
 
+export default app;
