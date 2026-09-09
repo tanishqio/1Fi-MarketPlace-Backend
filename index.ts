@@ -177,10 +177,8 @@ app.post("/addproductcvariant/:productid", async (req, res) => {
 });
 
 
+const PORT = Number(process.env.PORT);
 
-// app.listen(process.env.PORT, () => {
-//     console.log("starter on port"
-//     )
-// })
-
-export default app;
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
+});

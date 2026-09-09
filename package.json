@@ -20,8 +20,8 @@
     "pg": "^8.23.0"
   },
   "scripts": {
-    "dev": "bun --watch src/index.ts",
-    "start": "bun src/index.ts",
+    "dev": "bun --watch index.ts",
+    "start": "bun index.ts",
     "postinstall": "prisma generate"
   }
 }
