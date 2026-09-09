@@ -97,6 +97,38 @@ app.get("/api/getproductsbybrand/:brandname", async (req, res) => {
 });
 
 
+app.get("/api/getsingleproduct/:productid", async (req, res) => {
+    const productid = Number(req.params.productid);
+    const product = await prisma.products.findMany({
+        where: {
+            id: productid,
+        },
+        include: {
+            variants: {
+                orderBy: {
+                    price: "asc"
+                },
+                include: {
+                    images: {
+                        select: {
+                            imageUrl: true,
+                            Position: true
+                        }
+                    }
+                }
+            }
+
+        }
+    })
+    return res.json({
+        message: "all info of given single product",
+        product: product
+    })
+});
+
+
+// -----------------------adding req apis----------------------------//
+
 app.post("/addcategory", async (req, res) => {
     const name = req.body.name;
     const imageurl = req.body.url;
@@ -153,6 +185,26 @@ app.post("/addproduct", async (req, res) => {
     })
 });
 
+app.post("/addproductdetails", async (req, res) => {
+    const id = req.body.id;
+    const description = req.body.description;
+    const details = req.body.details;
+
+    const newproduct = await prisma.products.update({
+        where: { id: id },
+        data: {
+            description: description,
+            ProductDetails: details
+        }
+    })
+
+    return res.status(201).json({
+        message: "product has been updated with description and details",
+        newCategory: newproduct
+    })
+});
+
+
 app.post("/addproductcvariant/:productid", async (req, res) => {
     const productId = Number(req.params.productid);
     const sku = req.body.sku;
@@ -173,6 +225,27 @@ app.post("/addproductcvariant/:productid", async (req, res) => {
     return res.status(201).json({
         message: "new product variant has been added",
         newproductvariant: newproductvariant
+    })
+});
+
+app.post("/addimageofvariant", async (req, res) => {
+    const variantId = Number(req.body.variantid);
+    const image = req.body.image;
+    const position = await prisma.productImage.count({
+        where: {
+            variantId: variantId
+        }
+    })
+    await prisma.productImage.create({
+        data: {
+            variantId: variantId,
+            imageUrl: image,
+            Position: (position === 0) ? 1 : position + 1
+        }
+    })
+
+    return res.status(201).json({
+        message: "new image for variant has been added",
     })
 });
 

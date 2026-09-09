@@ -32,7 +32,7 @@ model Products {
   id   Int    @id @default(autoincrement())
   Name String @unique
   ImageUrl  String
-  description String?
+  description Json?
   ProductDetails Json?
   brandId Int
   categoryId Int

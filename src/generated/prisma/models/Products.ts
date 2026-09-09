@@ -44,7 +44,6 @@ export type ProductsMinAggregateOutputType = {
   id: number | null
   Name: string | null
   ImageUrl: string | null
-  description: string | null
   brandId: number | null
   categoryId: number | null
   Rating: number | null
@@ -54,7 +53,6 @@ export type ProductsMaxAggregateOutputType = {
   id: number | null
   Name: string | null
   ImageUrl: string | null
-  description: string | null
   brandId: number | null
   categoryId: number | null
   Rating: number | null
@@ -91,7 +89,6 @@ export type ProductsMinAggregateInputType = {
   id?: true
   Name?: true
   ImageUrl?: true
-  description?: true
   brandId?: true
   categoryId?: true
   Rating?: true
@@ -101,7 +98,6 @@ export type ProductsMaxAggregateInputType = {
   id?: true
   Name?: true
   ImageUrl?: true
-  description?: true
   brandId?: true
   categoryId?: true
   Rating?: true
@@ -209,7 +205,7 @@ export type ProductsGroupByOutputType = {
   id: number
   Name: string
   ImageUrl: string
-  description: string | null
+  description: runtime.JsonValue | null
   ProductDetails: runtime.JsonValue | null
   brandId: number
   categoryId: number
@@ -243,7 +239,7 @@ export type ProductsWhereInput = {
   id?: Prisma.IntFilter<"Products"> | number
   Name?: Prisma.StringFilter<"Products"> | string
   ImageUrl?: Prisma.StringFilter<"Products"> | string
-  description?: Prisma.StringNullableFilter<"Products"> | string | null
+  description?: Prisma.JsonNullableFilter<"Products">
   ProductDetails?: Prisma.JsonNullableFilter<"Products">
   brandId?: Prisma.IntFilter<"Products"> | number
   categoryId?: Prisma.IntFilter<"Products"> | number
@@ -274,7 +270,7 @@ export type ProductsWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ProductsWhereInput[]
   NOT?: Prisma.ProductsWhereInput | Prisma.ProductsWhereInput[]
   ImageUrl?: Prisma.StringFilter<"Products"> | string
-  description?: Prisma.StringNullableFilter<"Products"> | string | null
+  description?: Prisma.JsonNullableFilter<"Products">
   ProductDetails?: Prisma.JsonNullableFilter<"Products">
   brandId?: Prisma.IntFilter<"Products"> | number
   categoryId?: Prisma.IntFilter<"Products"> | number
@@ -307,7 +303,7 @@ export type ProductsScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Products"> | number
   Name?: Prisma.StringWithAggregatesFilter<"Products"> | string
   ImageUrl?: Prisma.StringWithAggregatesFilter<"Products"> | string
-  description?: Prisma.StringNullableWithAggregatesFilter<"Products"> | string | null
+  description?: Prisma.JsonNullableWithAggregatesFilter<"Products">
   ProductDetails?: Prisma.JsonNullableWithAggregatesFilter<"Products">
   brandId?: Prisma.IntWithAggregatesFilter<"Products"> | number
   categoryId?: Prisma.IntWithAggregatesFilter<"Products"> | number
@@ -317,7 +313,7 @@ export type ProductsScalarWhereWithAggregatesInput = {
 export type ProductsCreateInput = {
   Name: string
   ImageUrl: string
-  description?: string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Rating: number
   brand: Prisma.BrandsCreateNestedOneWithoutProductInput
@@ -329,7 +325,7 @@ export type ProductsUncheckedCreateInput = {
   id?: number
   Name: string
   ImageUrl: string
-  description?: string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   brandId: number
   categoryId: number
@@ -340,7 +336,7 @@ export type ProductsUncheckedCreateInput = {
 export type ProductsUpdateInput = {
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Rating?: Prisma.IntFieldUpdateOperationsInput | number
   brand?: Prisma.BrandsUpdateOneRequiredWithoutProductNestedInput
@@ -352,7 +348,7 @@ export type ProductsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   brandId?: Prisma.IntFieldUpdateOperationsInput | number
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -364,7 +360,7 @@ export type ProductsCreateManyInput = {
   id?: number
   Name: string
   ImageUrl: string
-  description?: string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   brandId: number
   categoryId: number
@@ -374,7 +370,7 @@ export type ProductsCreateManyInput = {
 export type ProductsUpdateManyMutationInput = {
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Rating?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -383,7 +379,7 @@ export type ProductsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   brandId?: Prisma.IntFieldUpdateOperationsInput | number
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -422,7 +418,6 @@ export type ProductsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   Name?: Prisma.SortOrder
   ImageUrl?: Prisma.SortOrder
-  description?: Prisma.SortOrder
   brandId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   Rating?: Prisma.SortOrder
@@ -432,7 +427,6 @@ export type ProductsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   Name?: Prisma.SortOrder
   ImageUrl?: Prisma.SortOrder
-  description?: Prisma.SortOrder
   brandId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   Rating?: Prisma.SortOrder
@@ -551,7 +545,7 @@ export type ProductsUpdateOneRequiredWithoutVariantsNestedInput = {
 export type ProductsCreateWithoutCategoryInput = {
   Name: string
   ImageUrl: string
-  description?: string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Rating: number
   brand: Prisma.BrandsCreateNestedOneWithoutProductInput
@@ -562,7 +556,7 @@ export type ProductsUncheckedCreateWithoutCategoryInput = {
   id?: number
   Name: string
   ImageUrl: string
-  description?: string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   brandId: number
   Rating: number
@@ -602,7 +596,7 @@ export type ProductsScalarWhereInput = {
   id?: Prisma.IntFilter<"Products"> | number
   Name?: Prisma.StringFilter<"Products"> | string
   ImageUrl?: Prisma.StringFilter<"Products"> | string
-  description?: Prisma.StringNullableFilter<"Products"> | string | null
+  description?: Prisma.JsonNullableFilter<"Products">
   ProductDetails?: Prisma.JsonNullableFilter<"Products">
   brandId?: Prisma.IntFilter<"Products"> | number
   categoryId?: Prisma.IntFilter<"Products"> | number
@@ -612,7 +606,7 @@ export type ProductsScalarWhereInput = {
 export type ProductsCreateWithoutBrandInput = {
   Name: string
   ImageUrl: string
-  description?: string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Rating: number
   category: Prisma.CategoriesCreateNestedOneWithoutProductInput
@@ -623,7 +617,7 @@ export type ProductsUncheckedCreateWithoutBrandInput = {
   id?: number
   Name: string
   ImageUrl: string
-  description?: string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   categoryId: number
   Rating: number
@@ -659,7 +653,7 @@ export type ProductsUpdateManyWithWhereWithoutBrandInput = {
 export type ProductsCreateWithoutVariantsInput = {
   Name: string
   ImageUrl: string
-  description?: string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Rating: number
   brand: Prisma.BrandsCreateNestedOneWithoutProductInput
@@ -670,7 +664,7 @@ export type ProductsUncheckedCreateWithoutVariantsInput = {
   id?: number
   Name: string
   ImageUrl: string
-  description?: string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   brandId: number
   categoryId: number
@@ -696,7 +690,7 @@ export type ProductsUpdateToOneWithWhereWithoutVariantsInput = {
 export type ProductsUpdateWithoutVariantsInput = {
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Rating?: Prisma.IntFieldUpdateOperationsInput | number
   brand?: Prisma.BrandsUpdateOneRequiredWithoutProductNestedInput
@@ -707,7 +701,7 @@ export type ProductsUncheckedUpdateWithoutVariantsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   brandId?: Prisma.IntFieldUpdateOperationsInput | number
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -718,7 +712,7 @@ export type ProductsCreateManyCategoryInput = {
   id?: number
   Name: string
   ImageUrl: string
-  description?: string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   brandId: number
   Rating: number
@@ -727,7 +721,7 @@ export type ProductsCreateManyCategoryInput = {
 export type ProductsUpdateWithoutCategoryInput = {
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Rating?: Prisma.IntFieldUpdateOperationsInput | number
   brand?: Prisma.BrandsUpdateOneRequiredWithoutProductNestedInput
@@ -738,7 +732,7 @@ export type ProductsUncheckedUpdateWithoutCategoryInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   brandId?: Prisma.IntFieldUpdateOperationsInput | number
   Rating?: Prisma.IntFieldUpdateOperationsInput | number
@@ -749,7 +743,7 @@ export type ProductsUncheckedUpdateManyWithoutCategoryInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   brandId?: Prisma.IntFieldUpdateOperationsInput | number
   Rating?: Prisma.IntFieldUpdateOperationsInput | number
@@ -759,7 +753,7 @@ export type ProductsCreateManyBrandInput = {
   id?: number
   Name: string
   ImageUrl: string
-  description?: string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   categoryId: number
   Rating: number
@@ -768,7 +762,7 @@ export type ProductsCreateManyBrandInput = {
 export type ProductsUpdateWithoutBrandInput = {
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Rating?: Prisma.IntFieldUpdateOperationsInput | number
   category?: Prisma.CategoriesUpdateOneRequiredWithoutProductNestedInput
@@ -779,7 +773,7 @@ export type ProductsUncheckedUpdateWithoutBrandInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   Rating?: Prisma.IntFieldUpdateOperationsInput | number
@@ -790,7 +784,7 @@ export type ProductsUncheckedUpdateManyWithoutBrandInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   ImageUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ProductDetails?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   Rating?: Prisma.IntFieldUpdateOperationsInput | number
@@ -906,7 +900,7 @@ export type $ProductsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id: number
     Name: string
     ImageUrl: string
-    description: string | null
+    description: runtime.JsonValue | null
     ProductDetails: runtime.JsonValue | null
     brandId: number
     categoryId: number
@@ -1340,7 +1334,7 @@ export interface ProductsFieldRefs {
   readonly id: Prisma.FieldRef<"Products", 'Int'>
   readonly Name: Prisma.FieldRef<"Products", 'String'>
   readonly ImageUrl: Prisma.FieldRef<"Products", 'String'>
-  readonly description: Prisma.FieldRef<"Products", 'String'>
+  readonly description: Prisma.FieldRef<"Products", 'Json'>
   readonly ProductDetails: Prisma.FieldRef<"Products", 'Json'>
   readonly brandId: Prisma.FieldRef<"Products", 'Int'>
   readonly categoryId: Prisma.FieldRef<"Products", 'Int'>
