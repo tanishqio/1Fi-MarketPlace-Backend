@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     origin: [
-        "http://localhost:3005",
+        "http://localhost:3000",
         "https://frontend.vercel.app"
     ]
 }));
